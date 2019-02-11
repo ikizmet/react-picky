@@ -196,6 +196,7 @@ class Picky extends React.PureComponent {
         getIsSelected: this.isItemSelected,
         selectValue: this.selectValue,
         selectOnly: this.selectOnly,
+        enableOnly: this.props.enableOnly,
         enableOnlyText: this.props.enableOnlyText
       });
     }
@@ -211,10 +212,12 @@ class Picky extends React.PureComponent {
           item,
           isSelected,
           selectValue: this.selectValue,
-          selectOnly: this.selectOnly,
           labelKey: labelKey,
           valueKey: valueKey,
           multiple: multiple,
+          selectOnly: this.selectOnly,
+          enableOnly: this.props.enableOnly,
+          enableOnlyText: this.props.enableOnlyText
         });
       } else {
         // Render a simple option
