@@ -55,7 +55,7 @@ const Option = props => {
             only(item);
           }}
           >
-          {props.enableOnlyText}
+          {enableOnlyText}
         </button>
       }
     </div>

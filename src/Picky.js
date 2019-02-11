@@ -184,6 +184,8 @@ class Picky extends React.PureComponent {
       render,
       tabIndex,
       renderList,
+      enableOnly,
+      enableOnlyText
     } = this.props;
     if (renderList) {
       return renderList({
@@ -193,6 +195,7 @@ class Picky extends React.PureComponent {
         tabIndex,
         getIsSelected: this.isItemSelected,
         selectValue: this.selectValue,
+        selectOnly: this.selectOnly,
         enableOnlyText: this.props.enableOnlyText
       });
     }
@@ -208,6 +211,7 @@ class Picky extends React.PureComponent {
           item,
           isSelected,
           selectValue: this.selectValue,
+          selectOnly: this.selectOnly,
           labelKey: labelKey,
           valueKey: valueKey,
           multiple: multiple,
@@ -228,8 +232,8 @@ class Picky extends React.PureComponent {
                 tabIndex={tabIndex}
                 id={this.state.id + '-option-' + index}
                 selectOnly={this.selectOnly}
-                enableOnly={this.props.enableOnly}
-                enableOnlyText={this.props.enableOnlyText}
+                enableOnly={enableOnly}
+                enableOnlyText={enableOnlyText}
               />
             </div>
           </div>
