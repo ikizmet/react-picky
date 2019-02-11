@@ -48,7 +48,7 @@ const Option = props => {
       {body}
       {enableOnly && 
         <button
-          className="picky__only"
+          className="picky__only hide"
           id={id + '-option-only-' + tabIndex}
           onClick={e => {
             e.stopPropagation();
