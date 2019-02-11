@@ -76,6 +76,7 @@
   cursor: pointer;
   border-bottom: 1px solid #eee;
   text-align: left;
+  position: relative;
 }
 .picky__dropdown .option:hover,
 .picky__dropdown li:hover {
@@ -94,6 +95,15 @@
 .picky__dropdown li input[type='checkbox'],
 .picky__dropdown li input[type='radio'] {
   margin-right: 3px;
+}
+.picky__dropdown .picky__only.hide{
+  display: none;
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+}
+.picky__dropdown .option:hover .picky__only.hide{
+  display: inline-block;
 }
 .picky__filter {
   display: flex;

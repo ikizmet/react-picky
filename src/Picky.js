@@ -221,25 +221,21 @@ class Picky extends React.PureComponent {
         });
       } else {
         // Render a simple option
-        return (
-          <div className="option__wrapper">
-            <div className="option">
-              <Option
-                key={key}
-                item={item}
-                isSelected={isSelected}
-                selectValue={this.selectValue}
-                labelKey={labelKey}
-                valueKey={valueKey}
-                multiple={multiple}
-                tabIndex={tabIndex}
-                id={this.state.id + '-option-' + index}
-                selectOnly={this.selectOnly}
-                enableOnly={enableOnly}
-                enableOnlyText={enableOnlyText}
-              />
-            </div>
-          </div>
+        return (   
+          <Option
+            key={key}
+            item={item}
+            isSelected={isSelected}
+            selectValue={this.selectValue}
+            labelKey={labelKey}
+            valueKey={valueKey}
+            multiple={multiple}
+            tabIndex={tabIndex}
+            id={this.state.id + '-option-' + index}
+            selectOnly={this.selectOnly}
+            enableOnly={enableOnly}
+            enableOnlyText={enableOnlyText}
+          />   
         );
       }
     });
