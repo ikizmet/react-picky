@@ -32,6 +32,7 @@ class Picky extends React.PureComponent {
     this.toggleSelectAll = this.toggleSelectAll.bind(this);
     this.onFilterChange = this.onFilterChange.bind(this);
     this.selectValue = this.selectValue.bind(this);
+    this.selectOnly = this.selectOnly.bind(this);
     this.allSelected = this.allSelected.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.isItemSelected = this.isItemSelected.bind(this);
@@ -99,6 +100,10 @@ class Picky extends React.PureComponent {
     } else {
       this.props.onChange(val);
     }
+  }
+
+  selectOnly(val) {
+    this.props.onChange([val]); 
   }
   /**
    * Get the value of a given option or value safely
@@ -188,6 +193,7 @@ class Picky extends React.PureComponent {
         tabIndex,
         getIsSelected: this.isItemSelected,
         selectValue: this.selectValue,
+        enableOnlyText: this.props.enableOnlyText
       });
     }
     return items.map((item, index) => {
@@ -209,17 +215,24 @@ class Picky extends React.PureComponent {
       } else {
         // Render a simple option
         return (
-          <Option
-            key={key}
-            item={item}
-            isSelected={isSelected}
-            selectValue={this.selectValue}
-            labelKey={labelKey}
-            valueKey={valueKey}
-            multiple={multiple}
-            tabIndex={tabIndex}
-            id={this.state.id + '-option-' + index}
-          />
+          <div className="option__wrapper">
+            <div className="option">
+              <Option
+                key={key}
+                item={item}
+                isSelected={isSelected}
+                selectValue={this.selectValue}
+                labelKey={labelKey}
+                valueKey={valueKey}
+                multiple={multiple}
+                tabIndex={tabIndex}
+                id={this.state.id + '-option-' + index}
+                selectOnly={this.selectOnly}
+                enableOnly={this.props.enableOnly}
+                enableOnlyText={this.props.enableOnlyText}
+              />
+            </div>
+          </div>
         );
       }
     });
@@ -343,7 +356,7 @@ class Picky extends React.PureComponent {
       tabIndex,
       dropdownHeight,
       renderSelectAll,
-      filterPlaceholder,
+      filterPlaceholder
     } = this.props;
     const { open } = this.state;
     let ariaOwns = '';
@@ -457,6 +470,8 @@ Picky.defaultProps = {
   tabIndex: 0,
   keepOpen: true,
   selectAllText: 'Select all',
+  enableOnly: false,
+  enableOnlyText: 'Only'
 };
 Picky.propTypes = {
   placeholder: PropTypes.string,
@@ -491,6 +506,8 @@ Picky.propTypes = {
   className: PropTypes.string,
   renderList: PropTypes.func,
   filterPlaceholder: PropTypes.string,
+  enableOnly: PropTypes.bool,
+  enableOnlyText: PropTypes.string
 };
 
 export default Picky;

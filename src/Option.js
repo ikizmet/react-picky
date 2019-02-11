@@ -12,11 +12,15 @@ const Option = props => {
     style,
     multiple,
     tabIndex,
+    selectOnly,
+    enableOnly,
+    enableOnlyText
   } = props;
   const cssClass = isSelected ? 'option selected' : 'option';
   const body = isDataObject(item, labelKey, valueKey) ? item[labelKey] : item;
   const inputType = multiple ? 'checkbox' : 'radio';
   const select = () => selectValue(item);
+  const only = () => selectOnly(item);
   return (
     <div
       tabIndex={tabIndex}
@@ -42,6 +46,18 @@ const Option = props => {
         data-testid={'option-checkbox'}
       />
       {body}
+      {enableOnly && 
+        <button
+          className="picky__only"
+          id={id + '-option-only-' + tabIndex}
+          onClick={e => {
+            e.stopPropagation();
+            only(item);
+          }}
+          >
+          {props.enableOnlyText}
+        </button>
+      }
     </div>
   );
 };
@@ -60,5 +76,8 @@ Option.propTypes = {
   selectValue: PropTypes.func.isRequired,
   multiple: PropTypes.bool,
   tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  selectOnly: PropTypes.func.isRequired,
+  enableOnly: PropTypes.bool,
+  enableOnlyText: PropTypes.string
 };
 export default Option;
