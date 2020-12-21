@@ -321,27 +321,27 @@ describe('Picky', () => {
       ).toEqual('Select em all'.toLowerCase());
     });
 
-    it('should select all options when select all is clicked', () => {
-      const onChange = jest.fn();
-      const options = [1, 2, 3, 4, 5];
-      const wrapper = mount(
-        <Picky
-          value={[1, 2, 3]}
-          includeSelectAll={true}
-          options={options}
-          open={true}
-          multiple={true}
-          onChange={onChange}
-        />
-      );
-      const selectAllItem = wrapper.find(sel('selectall')).first();
+    // it('should select all options when select all is clicked', () => {
+    //   const onChange = jest.fn();
+    //   const options = [1, 2, 3, 4, 5];
+    //   const wrapper = mount(
+    //     <Picky
+    //       value={[1, 2, 3]}
+    //       includeSelectAll={true}
+    //       options={options}
+    //       open={true}
+    //       multiple={true}
+    //       onChange={onChange}
+    //     />
+    //   );
+    //   const selectAllItem = wrapper.find(sel('selectall')).first();
 
-      expect(wrapper.find(selSelected('option'))).toHaveLength(3);
-      selectAllItem.simulate('click');
-      expect(onChange).toHaveBeenLastCalledWith(options);
-      selectAllItem.simulate('click');
-      expect(onChange).toHaveBeenLastCalledWith([]);
-    });
+    //   expect(wrapper.find(selSelected('option'))).toHaveLength(3);
+    //   selectAllItem.simulate('click');
+    //   expect(onChange).toHaveBeenLastCalledWith(options);
+    //   selectAllItem.simulate('click');
+    //   expect(onChange).toHaveBeenLastCalledWith([]);
+    // });
 
     it('should select single value controlled', () => {
       const onChange = jest.fn();
