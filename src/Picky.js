@@ -291,9 +291,6 @@ class Picky extends React.PureComponent {
    * @memberof Picky
    */
   handleOutsideClick(e) {
-    if (this.toggleButton && this.toggleButton.contains(e.target)) {
-      return;
-    }
     // If keep open then don't toggle dropdown
     // If radio and not keepOpen then auto close it on selecting a value
     // If radio and click to the filter input then don't toggle dropdown
@@ -323,7 +320,8 @@ class Picky extends React.PureComponent {
    *
    * @memberof Picky
    */
-  toggleDropDown() {
+  toggleDropDown(e) {
+    e && e.stopPropagation()
     if (!this.state.open) {
       // Add event listener to listen for clicks to determine if click occured outside the component or not
       document.addEventListener('click', this.handleOutsideClick, false);
@@ -391,7 +389,6 @@ class Picky extends React.PureComponent {
         tabIndex={tabIndex}
       >
         <button
-          ref={node => { this.toggleButton = node; }}
           id={`${this.state.id}__button`}
           type="button"
           className="picky__input"
