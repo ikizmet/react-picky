@@ -320,7 +320,8 @@ class Picky extends React.PureComponent {
    *
    * @memberof Picky
    */
-  toggleDropDown() {
+  toggleDropDown(e) {
+    e && e.stopPropagation()
     if (!this.state.open) {
       // Add event listener to listen for clicks to determine if click occured outside the component or not
       document.addEventListener('click', this.handleOutsideClick, false);
